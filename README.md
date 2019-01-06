@@ -8,11 +8,11 @@ First copy these two files, diskover-treewalk-client.py and scandir.py, to your 
 
 Next, on your diskover linux host start diskover in socket server mode (proxy) for the tree walk client to communicate with and send batches of directory listings (pickle).
 
-`python diskover.py -i diskover-indexname -d /mnt/isilon -a -L --debug`
+`$ python diskover.py -i diskover-indexname -d /mnt/isilon -a -L --debug`
 
 And now to start the tree walk client on your storage
 
-`python diskover-treewalk-client.py -p 192.168.2.3 -t pscandir -r /ifs/data -R /mnt/isilon`
+`$ python diskover-treewalk-client.py -p 192.168.2.3 -t pscandir -r /ifs/data -R /mnt/isilon`
 
 
 ```
