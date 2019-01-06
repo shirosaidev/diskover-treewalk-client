@@ -1,14 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""diskover - Elasticsearch file system crawler
-diskover is a file system crawler that index's
-your file metadata into Elasticsearch.
-See README.md or https://github.com/shirosaidev/diskover
+"""diskover tree walk client
+See README.md or https://github.com/shirosaidev/diskover-treewalk-client
 for more information.
 
-Copyright (C) Chris Park 2017-2018
-diskover is released under the Apache 2.0 license. See
-LICENSE for the full license text.
+Copyright (C) Chris Park 2018-2019
+diskover tree walk client is released under the Apache 2.0 license.
+See LICENSE for the full license text.
 """
 
 import os
