@@ -6,13 +6,14 @@ The tree walk client can run directly on your storage server using Python 2.6+ (
 
 First copy these two files, diskover-treewalk-client.py and scandir.py, to your storage server.
 
-Next, on your diskoiver linux host (not on storage server) start diskover in socket server mode (proxy) for the tree walk client to communicate with and send batches of directory listings (pickle).
+Next, on your diskover linux host start diskover in socket server mode (proxy) for the tree walk client to communicate with and send batches of directory listings (pickle).
 
 `python diskover.py -i diskover-indexname -d /mnt/isilon -a -L --debug`
 
 And now to start the tree walk client on your storage
 
-### CLI options
+`python diskover-treewalk-client.py -p 192.168.2.3 -t pscandir -r /ifs/data -R /mnt/isilon`
+
 
 ```
 Usage: diskover-treewalk-client.py [options]
@@ -54,10 +55,6 @@ Options:
                         as dirname* or *dirname*
                         (default: .*,.snapshot,.Snapshot,.zfs)
 ```
-
-### Example
-
-`python diskover-treewalk-client.py -p 192.168.2.3 -t pscandir -r /ifs/data -R /mnt/isilon`
 
 **host** and **port** are the ip or hostname and port (default 9998) of the diskover socket server.
 
