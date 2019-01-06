@@ -1,7 +1,8 @@
 # diskover-treewalk-client
-diskover tree walk client for running on remote storage
 
-The tree walk client can run directly on the storage using Python 2.6+ with no extra python dependencies. If you are finding nfs/cifs crawls slow or queue at 0 a lot or many bots idle a lot of the time, this might help.
+The tree walk client can run directly on your storage server using Python 2.6+ (no other dependencies).
+
+### Usage
 
 First copy these two files, diskover-treewalk-client.py and scandir.py, to your storage server.
 
