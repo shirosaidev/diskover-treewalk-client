@@ -65,7 +65,7 @@ Options:
 
 **treewalk_method** can be one of **oswalk**, **scandir**, **pscandir**, **ls**, **pls**, or **metaspider**. pscandir (parallel scandir) is default and uses multi-threaded scandir. Metaspider method will collect all meta data locally and send it over to diskover proxy which then sends it to the bots to process. This eliminates the bots from doing meta stat calls over nfs/cifs which could help to index very large storage systems. Spider threads are adjustable by setting --metaspiderthreads NUM_SPIDERS.
 
-**ls and pls (parallel ls) require GNU ls which you can set the location with -g**. If you are using Isilon storage and want to use ls/pls, you will need to copy gls binary in the `treewalk_client/freebsd10_gnu_ls` directory. gls should go to into /usr/local/bin. You will need to also create a symlink for libintl.so.8 `ln -s /usr/local/lib/libintl.so.9 /usr/local/lib/libintl.so.8` which is required by gls.
+**ls and pls (parallel ls) require GNU ls which you can set the location with -g**. If you are using Isilon storage and want to use ls/pls, you will need to copy gls binary in the `freebsd10_gnu_ls` directory. gls should go to into /usr/local/bin. You will need to also create a symlink for libintl.so.8 `ln -s /usr/local/lib/libintl.so.9 /usr/local/lib/libintl.so.8` which is required by gls.
 
 **rootdir_local** is the local directory path on the storage that you want to tree walk from.
 **rootdir_remote** is the mount that the crawl bots see to the same directory on storage as **rootdir_local**, this path replaces **rootdir_local** by the client before sending to diskover proxy so bots can locate that path on their end. Set this to the same path (-d path) as used when starting diskover.py proxy.
