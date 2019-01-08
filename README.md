@@ -11,11 +11,34 @@ First copy these two files, diskover-treewalk-client.py and scandir.py, to your 
 
 Next, on your diskover linux host start diskover in socket server mode (proxy) for the tree walk client to communicate with and send batches of directory listings (pickle).
 
-`$ python diskover.py -i diskover-indexname -d /mnt/isilon -a -L --debug`
+`$ python diskover.py -i diskover-indexname -d /mnt/isilon -a -L`
 
 And now to start the tree walk client on your storage
 
 `$ python diskover-treewalk-client.py -p 192.168.2.3 -t pscandir -r /ifs/data -R /mnt/isilon`
+
+
+### Advanced parallel usage for clustered storage
+
+1) Create index with just level 1 directories and files
+
+`$ python diskover.py -i diskover-indexname -a -d /mnt/isilon --maxdepth 1`
+
+2) Start diskover proxies using different port for each storage node that will run tree walk client
+
+`$ python diskover.py -i diskover-indexname -a -d /mnt/isilon/dir1 --reindexrecurs -L --twcport 9997`
+`$ python diskover.py -i diskover-indexname -a -d /mnt/isilon/dir2 --reindexrecurs -L --twcport 9996`
+...
+
+3) Start tree walk client on storage nodes for each directory in rootdir and connect to proxy port in step 2
+
+`$ python diskover-treewalk-client.py -p 192.168.2.3 -P 9997 -r /ifs/data/dir1 -R /mnt/isilon/dir1`
+`$ python diskover-treewalk-client.py -p 192.168.2.3 -P 9996 -r /ifs/data/dir2 -R /mnt/isilon/dir2`
+...
+
+4) After all crawls are finished, calculate rootdir doc's size/items counts
+
+`$ python diskover.py -i diskover-indexname -a -d /mnt/isilon --dircalcsonly --maxdcdepth 0`
 
 
 ```
