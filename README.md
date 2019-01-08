@@ -48,7 +48,9 @@ $ python diskover-treewalk-client.py -p 192.168.2.3 -P 9996 -r /ifs/data/dir2 -R
 
 4) After all crawls are finished, calculate rootdir doc's size/items counts
 
-`$ python diskover.py -i diskover-indexname -a -d /mnt/isilon --dircalcsonly --maxdcdepth 0`
+```
+$ python diskover.py -i diskover-indexname -a -d /mnt/isilon --dircalcsonly --maxdcdepth 0
+```
 
 
 ### Cli options
