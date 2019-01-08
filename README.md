@@ -51,6 +51,8 @@ $ python diskover-treewalk-client.py -p 192.168.2.3 -P 9996 -r /ifs/data/dir2 -R
 `$ python diskover.py -i diskover-indexname -a -d /mnt/isilon --dircalcsonly --maxdcdepth 0`
 
 
+### Cli options
+
 ```
 Usage: diskover-treewalk-client.py [options]
 
