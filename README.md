@@ -11,18 +11,24 @@ First copy these two files, diskover-treewalk-client.py and scandir.py, to your 
 
 Next, on your diskover linux host start diskover in socket server mode (proxy) for the tree walk client to communicate with and send batches of directory listings (pickle).
 
-`$ python diskover.py -i diskover-indexname -d /mnt/isilon -a -L`
+```
+$ python diskover.py -i diskover-indexname -d /mnt/isilon -a -L
+```
 
 And now to start the tree walk client on your storage
 
-`$ python diskover-treewalk-client.py -p 192.168.2.3 -t pscandir -r /ifs/data -R /mnt/isilon`
+```
+$ python diskover-treewalk-client.py -p 192.168.2.3 -t pscandir -r /ifs/data -R /mnt/isilon
+```
 
 
 ### Advanced parallel usage for clustered storage
 
 1) Create index with just level 1 directories and files
 
-`$ python diskover.py -i diskover-indexname -a -d /mnt/isilon --maxdepth 1`
+```
+$ python diskover.py -i diskover-indexname -a -d /mnt/isilon --maxdepth 1
+```
 
 2) Start diskover proxies using different port for each storage node that will run tree walk client
 
