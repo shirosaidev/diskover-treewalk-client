@@ -26,15 +26,19 @@ And now to start the tree walk client on your storage
 
 2) Start diskover proxies using different port for each storage node that will run tree walk client
 
-`$ python diskover.py -i diskover-indexname -a -d /mnt/isilon/dir1 --reindexrecurs -L --twcport 9997`
-`$ python diskover.py -i diskover-indexname -a -d /mnt/isilon/dir2 --reindexrecurs -L --twcport 9996`
+```
+$ python diskover.py -i diskover-indexname -a -d /mnt/isilon/dir1 --reindexrecurs -L --twcport 9997
+$ python diskover.py -i diskover-indexname -a -d /mnt/isilon/dir2 --reindexrecurs -L --twcport 9996
 ...
+```
 
 3) Start tree walk client on storage nodes for each directory in rootdir and connect to proxy port in step 2
 
-`$ python diskover-treewalk-client.py -p 192.168.2.3 -P 9997 -r /ifs/data/dir1 -R /mnt/isilon/dir1`
-`$ python diskover-treewalk-client.py -p 192.168.2.3 -P 9996 -r /ifs/data/dir2 -R /mnt/isilon/dir2`
+```
+$ python diskover-treewalk-client.py -p 192.168.2.3 -P 9997 -r /ifs/data/dir1 -R /mnt/isilon/dir1
+$ python diskover-treewalk-client.py -p 192.168.2.3 -P 9996 -r /ifs/data/dir2 -R /mnt/isilon/dir2
 ...
+```
 
 4) After all crawls are finished, calculate rootdir doc's size/items counts
 
