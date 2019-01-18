@@ -25,7 +25,7 @@ from optparse import OptionParser
 from multiprocessing import cpu_count
 
 
-version = '1.0.21'
+version = '1.0.22'
 __version__ = version
 
 # Subprocess buffer size for ls and pls treewalk method
@@ -129,7 +129,7 @@ def scandirwalk_worker():
 		try:
 			q_paths_in_progress.put(path)
 			for entry in scandir(path):
-				if entry.is_dir(follow_symlinks=False):
+				if entry.is_dir(follow_symlinks=False) and not dir_excluded(entry.path):
 					dirs.append(entry.name)
 				elif entry.is_file(follow_symlinks=False):
 					nondirs.append(entry.name)
@@ -397,11 +397,7 @@ if __name__ == "__main__":
 			for root, dirs, files in scandirwalk(ROOTDIR_LOCAL):
 				dircount += 1
 				totaldirs += 1
-				# check if directory excluded and delete subdirs and files to not recurse down tree
-				if dir_excluded(root):
-					del dirs[:]
-					del files[:]
-					continue
+
 				root = root.replace(ROOTDIR_LOCAL, ROOTDIR_REMOTE)
 				packet.append((root, dirs[:], files[:]))
 				if len(packet) >= BATCH_SIZE:
