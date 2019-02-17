@@ -1,6 +1,6 @@
 # diskover-treewalk-client
 
-Tree walk client for running directly on storage server and sending dir lists to diskover proxy.
+Tree walk client (TWC) for running directly on storage server and sending dir lists to diskover proxy.
 
 ### Requirements
 - Python 2.6+ (no other dependencies)
