@@ -9,7 +9,7 @@ Tree walk client for running directly on storage server and sending dir lists to
 
 First copy these two files, diskover-treewalk-client.py and scandir.py, to your storage server.
 
-Next, on your diskover linux host start diskover in socket server mode (proxy) for the tree walk client to communicate with and send batches of directory listings (pickle).
+Next, on your diskover linux host start diskover in socket server mode (proxy) for the tree walk client to communicate with and send batches of directory listings (pickle). `-d /path` can be a sshfs mount if you are unable to mount using nfs/smb.
 
 ```
 $ python diskover.py -i diskover-indexname -d /mnt/isilon -a -L
