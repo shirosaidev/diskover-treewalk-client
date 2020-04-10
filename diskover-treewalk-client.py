@@ -25,7 +25,7 @@ from optparse import OptionParser
 from multiprocessing import cpu_count
 
 
-version = '1.0.22'
+version = '1.0.23'
 __version__ = version
 
 # Subprocess buffer size for ls and pls treewalk method
@@ -62,6 +62,8 @@ parser.add_option("-l", "--lsthreads", metavar="NUM_LS_THREADS", default=cpu_cou
 parser.add_option("-e", "--excludeddir", metavar="EXCLUDED_DIR", default=['.*','.snapshot','.Snapshot','.zfs'], action="append",
 					help="Additional directory to exclude, can use wildcard such as dirname* or *dirname* \
 					(default: .*,.snapshot,.Snapshot,.zfs)")
+parser.add_option("-E", "--noexcludeddirs", metavar="NO_EXCLUDED_DIRS", action="store_true", default=False,
+					help="Don't exclude any directories")
 (options, args) = parser.parse_args()
 options = vars(options)
 
@@ -82,9 +84,13 @@ if ROOTDIR_REMOTE != '/':
 	ROOTDIR_REMOTE = ROOTDIR_REMOTE.rstrip(os.path.sep)
 NUM_SPIDERS = options['metaspiderthreads']
 NUM_SCANDIR_THREADS = options['pscandirthreads']
-EXCLUDED_DIRS = options['excludeddir']
+if options['noexcludeddirs']:
+	EXCLUDED_DIRS = []
+else:
+	EXCLUDED_DIRS = options['excludeddir']
 NUM_LS_THREADS = options['lsthreads']
 GLS = options['pathtogls']
+
 
 q = Queue()
 lock = Lock()
@@ -326,6 +332,7 @@ if __name__ == "__main__":
 			t.start()
 
 		print("Starting tree walk... (ctrl-c to stop)")
+		print('Excluded dirs: %s' % EXCLUDED_DIRS)
 
 		packet = []
 		if TREEWALK_METHOD in ["oswalk", "scandir"]:
