@@ -94,6 +94,7 @@ Options:
                         Additional directory to exclude, can use wildcard such
                         as dirname* or *dirname*
                         (default: .*,.snapshot,.Snapshot,.zfs)
+  -E, --noexcludeddirs  Don't exclude any directories
 ```
 
 **host** and **port** are the ip or hostname and port (default 9998) of the diskover socket server.
@@ -107,7 +108,10 @@ Options:
 **rootdir_local** is the local directory path on the storage that you want to tree walk from.
 **rootdir_remote** is the mount that the crawl bots see to the same directory on storage as **rootdir_local**, this path replaces **rootdir_local** by the client before sending to diskover proxy so bots can locate that path on their end. Set this to the same path (-d path) as used when starting diskover.py proxy.
 
-**excluded_dir** are directories you want to exclude from sending to diskover proxy. You can add additional directories using --excludeddir dirname, example -e .backups -e .Backups .
+**excluded_dir** are directories you want to exclude from sending to diskover proxy. You can add additional directories using --excludeddir dirname, example -e .backups -e .Backups . By default .*,.snapshot,.Snapshot,.zfs are excluded.
+
+**noexcludeddirs** use this if you want to not excluded any directories from sending to diskover proxy.
+
 
 Experiment with the batch size to get the best queue fill rate in Redis and best optimization of the tcp connection. The client sends up to num_connections simultaneous tcp streams of pickle data to the diskover proxy.
 
