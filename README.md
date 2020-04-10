@@ -110,7 +110,7 @@ Options:
 
 **excluded_dir** are directories you want to exclude from sending to diskover proxy. You can add additional directories using --excludeddir dirname, example -e .backups -e .Backups . By default .*,.snapshot,.Snapshot,.zfs are excluded.
 
-**noexcludeddirs** use this if you want to not excluded any directories from sending to diskover proxy.
+**noexcludeddirs** use if you want to not exclude any directories sent to diskover proxy.
 
 
 Experiment with the batch size to get the best queue fill rate in Redis and best optimization of the tcp connection. The client sends up to num_connections simultaneous tcp streams of pickle data to the diskover proxy.
